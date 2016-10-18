@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::children">
+                    <resource id="Magento_Backend::config">
+							<resource id="Tagalys_Tglssearch::tagalys_tglssearch" title="Search Settings" sortOrder="0"/>
+					</resource>
+				</resource>
+			</resource>
+        </resources>
+    </acl>
+</config>

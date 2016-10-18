@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Magento\CatalogSearch\Controller\Result\Index" type="Tagalys\Tglssearch\Controller\Result\Index" />
+	<preference for="Magento\Catalog\Controller\Category\View" type="Tagalys\Tglssearch\Controller\Category\View" />
+	<preference for="Magento\CatalogSearch\Block\Result" type="Tagalys\Tglssearch\Block\Result" />
+	<preference for="Magento\LayeredNavigation\Block\Navigation" type="Tagalys\Tglssearch\Block\Navigation" />
+	<preference for="Magento\Catalog\Block\Product\ListProduct" type="Tagalys\Tglssearch\Block\Product\ListProduct" />
+	<preference for="Magento\Catalog\Block\Product\ProductList\Toolbar" type="Tagalys\Tglssearch\Block\Product\ProductList\Toolbar" />
+	<preference for="Magento\Catalog\Model\ResourceModel\Product\Collection" type="Tagalys\Tglssearch\Model\ResourceModel\Product\Collection" />
+	<!-- <preference for="Magento\Search\Helper\Data" type="Tagalys\Tglssearch\Helper\Data" /> -->
+	<type name="Magento\Search\Helper\Data">
+		<plugin name="my_plugin"
+			type="Tagalys\Tglssearch\Helper\Data"
+			sortOrder="1"
+			disabled="false"
+		/>
+	</type>
+	<virtualType name="categoryFilterList" type="Magento\Catalog\Model\Layer\FilterList">
+        <arguments>
+            <argument name="filterableAttributes" xsi:type="object">Magento\Catalog\Model\Layer\Category\FilterableAttributeList</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Catalog\Model\Layer\Category\FilterableAttributeList">
+        <arguments>
+            <argument name="layer" xsi:type="object">Magento\Catalog\Model\Layer\Category</argument>
+        </arguments>
+    </type>
+</config>
