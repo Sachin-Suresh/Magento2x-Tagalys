@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <tab id="tagalys" translate="label" sortOrder="2000">
+            <label>Tagalys</label>
+        </tab>
+	<section id="tagalys_tglssearch" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Search Configuration</label>
+            <tab>tagalys</tab>
+			<!-- resource tag name which we have to define in the acl.xml -->
+            <resource>Tagalys_Tglssearch::tagalys_tglssearch</resource>
+            <group id="general" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Default Setting</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Plugin</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                 </field>
+            </group>
+    </section>
+    </system>
+</config>

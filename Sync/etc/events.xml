@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_save_after">
+        <observer name="catalog_product_save_after_handler" instance="Tagalys\Sync\Observer\SyncObserver"/>
+    </event>
+    <event name="catalog_product_delete_after_done">
+        <observer name="catalog_product_delete_after_handler" instance="Tagalys\Sync\Observer\SyncProductDeleteObserver"/>
+    </event>
+    <!--   <event name="sales_order_payment_place_end">
+        <observer name="sales_order_payment_place_end_handler" instance="Tagalys\Sync\Observer\SyncProductPaymentComplete"/>
+    </event>   -->
+</config>

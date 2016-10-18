@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <tab id="tagalys" translate="label" sortOrder="2001">
+            <label>Tagalys</label>
+        </tab>
+		<!-- Sync Setting -->
+		<section id="tagalys_sync" translate="label" type="text" sortOrder="3000" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Sync</label>
+             <tab>tagalys</tab>
+            <resource>Tagalys_Sync::tagalys_sync</resource>
+			<!-- Default Setting -->
+			<group id="default" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Default Setting</label>
+                <field id="status" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Plugin</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                 </field>
+            </group>
+			 <!-- Sync Field -->
+			<group id="product" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Field</label>
+                <field id="sync_fields" translate="label" type="multiselect" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Fields to exclude</label>
+                    <source_model>Tagalys\Sync\Model\Adminhtml\System\Config\DataSyncField</source_model>
+                </field>
+				<field id="import_status" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bulk Import Status</label>
+                    <source_model>Tagalys\Sync\Model\Adminhtml\System\Config\ImportStatus</source_model>
+                </field>
+            </group>
+			<!-- Inventory Field -->
+			<group id="inventory" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Inventory Field</label>
+                <field id="inventory_fields" translate="label" type="multiselect" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Fields to exclude</label>
+                    <source_model>Tagalys\Sync\Model\Adminhtml\System\Config\StockField</source_model>
+                 </field>
+            </group>
+		</section>
+
+		<!-- API Server Configuration -->
+		 <section id="server" translate="label" type="text" sortOrder="2000" showInDefault="1" showInWebsite="1" showInStore="1">
+			<label>API</label>
+    		 <tab>tagalys</tab>
+			<resource>Tagalys_Sync::server</resource>
+			<!-- Sync group-->
+			<group id="api" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sync</label>
+                <field id="hostname" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Server</label>
+					<comment>Tagalys API Server details</comment>
+					<tooltip>Enter Tagalys server ip address or hostname details</tooltip>
+					<validate>required-entry</validate>
+                </field>
+				 <field id="key" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Key</label>
+					 <comment>Tagalys API Key details</comment>
+					<tooltip>Enter Tagalys api kery details</tooltip>
+					<validate>required-entry</validate>
+                 </field>
+            </group>
+
+			<!-- Search group-->
+			<group id="search" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Search</label>
+				<!-- <tab>tagalys</tab> -->
+				<field id="hostname" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Server</label>
+					 <comment>Tagalys API Server details</comment>
+					 <tooltip>Enter Tagalys server ip address or hostname details</tooltip>
+                     <validate>required-entry</validate>
+                 </field>
+				 <field id="key" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Key</label>
+					 <comment>Tagalys API Key details</comment>
+					<tooltip>Enter Tagalys api kery details</tooltip>
+					<validate>required-entry</validate>
+                 </field>
+			</group>
+		</section>
+    </system>
+</config>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+				<resource id="Magento_Catalog::catalog" title="Products" translate="title" sortOrder="30">
+					<!--To enable custom resource checkbox-->
+                    <resource id="Tagalys_Sync::tagalys_prod_sync" title="Tagalys" translate="title" sortOrder="10">
+                        <resource id="Tagalys_Sync::sync" title="Sync" translate="title" sortOrder="10" />
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+					<resource id="Magento_Backend::stores_settings">
+						<resource id="Magento_Config::config">
+							<resource id="Tagalys_Sync::tagalys_sync" title="Sync Settings" sortOrder="0"/> <!--resourceid used for frontend routeid -->
+							<resource id="Tagalys_Sync::server" title="API Settings" sortOrder="1"/>	<!--resourceid used for frontend routeid -->
+						</resource>
+					</resource>
+				</resource>
+			</resource>
+        </resources>
+    </acl>
+</config>

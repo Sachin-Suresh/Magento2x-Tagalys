@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+		<!-- Sync Setting -->
+        <route id="tagalys_sync" frontName="tagalys_sync">
+            <module name="Tagalys_Sync" />
+        </route>
+		<!-- API Server Configuration in front end -->
+		<route id="server" frontName="server">
+            <module name="Tagalys_Sync" />
+        </route>
+    </router>
+</config>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../app/code/Magento/Webapi/etc/webapi.xsd">
+	<route url="/V1/sync/get/update/:limit" method="GET">   								  <!--route: contains the URL and a method (GET, POST, and DELETE) -->
+        <service class="Tagalys\Sync\Api\QueueRepositoryInterface" method="getProductUpdate"/>   <!--service: defines the interface class and the method for handling -->
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+	<route url="/V1/sync/get/pagelimit/:page/:limit" method="GET">   								  <!--route: contains the URL and a method (GET, POST, and DELETE) -->
+        <service class="Tagalys\Sync\Api\QueueRepositoryInterface" method="getProduct"/>   <!--service: defines the interface class and the method for handling -->
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+	<route url="/V1/sync/get" method="GET">   								  
+        <service class="Tagalys\Sync\Api\QueueRepositoryInterface" method="getProductTotal"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+	<route url="/V1/sync/get/sku/:sku" method="GET">   								  
+        <service class="Tagalys\Sync\Api\QueueRepositoryInterface" method="getSingleProductBySku"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+	<route url="/V1/sync/get/updateCount" method="GET">   								  
+        <service class="Tagalys\Sync\Api\QueueRepositoryInterface" method="getProductUpdateCount"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+</routes>

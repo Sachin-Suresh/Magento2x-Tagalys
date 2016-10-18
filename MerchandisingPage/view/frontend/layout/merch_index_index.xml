@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+		<title>Merchandising</title>
+	</head>
+    <body>
+		 <referenceContainer name="left">
+			<block class="Tagalys\MerchandisingPage\Block\Filter" name="custom_filter" template="Tagalys_LayeredNavigation::layer/view.phtml" />
+		</referenceContainer>
+
+		 <referenceBlock class="Tagalys\MerchandisingPage\Block\Result" name="search.result">
+			  <action method="setTemplate">
+				<argument name="template" xsi:type="string">Tagalys_CatalogSearch::result.phtml</argument>
+			  </action>
+		</referenceBlock>
+		
+		<referenceBlock class="Tagalys\LayeredNavigation\Block\Navigation" before="-" name="catalogsearch.leftnav">
+          <action method="setTemplate">
+            <argument name="template" xsi:type="string">Tagalys_LayeredNavigation::layer/view.phtml</argument>
+          </action>
+        </referenceBlock>
+
+		<referenceContainer name="content">
+			<block class="Magento\Catalog\Block\Product\ListProduct" name="product_list" template="Magento_Catalog::product/list.phtml">
+				<block class="Magento\Framework\View\Element\RendererList" name="category.product.type.details.renderers" as="details.renderers">
+					<block class="Magento\Framework\View\Element\Template" as="default"/>
+				</block>
+				<block class="Tagalys\Catalog\Block\Product\ProductList\Toolbar" before="-" name="product_list_toolbar" template="Tagalys_Catalog::product/list/toolbar.phtml">
+					<block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+				 </block>
+				 <action method="setToolbarBlockName">
+					 <argument name="name" xsi:type="string">product_list_toolbar</argument>
+				 </action>
+				  <!-- <block class="Tagalys\LayeredNavigation\Block\Navigation" name="catalogsearch.leftnav" template="Tagalys_LayeredNavigation::layer/view.phtml"/> -->
+				  <block class="Tagalys\MerchandisingPage\Block\Filter" name="custom_filter" template="Tagalys_LayeredNavigation::layer/view.phtml" />
+			</block>
+		</referenceContainer>
+	</body>
+</page>

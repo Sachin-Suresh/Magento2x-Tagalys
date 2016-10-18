@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Magento\Catalog\Controller\Category\View" type="Tagalys\Catalog\Controller\Category\View" />
+	<preference for="Magento\Catalog\Block\Product\ListProduct" type="Tagalys\Catalog\Block\Product\ListProduct" />
+	<preference for="Magento\Catalog\Block\Product\ProductList\Toolbar" type="Tagalys\Catalog\Block\Product\ProductList\Toolbar" />
+	<preference for="Magento\Catalog\Model\ResourceModel\Product\Collection" type="Tagalys\Catalog\Model\ResourceModel\Product\Collection" />
+	<preference for="Magento\LayeredNavigation\Block\Navigation" type="Tagalys\Catalog\Block\Navigation" />
+	<preference for="Magento\Catalog\Model\Layer" type="Tagalys\Catalog\Model\Layer" />
+</config>

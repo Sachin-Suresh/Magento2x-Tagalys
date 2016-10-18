@@ -1,0 +1,144 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Category layered navigation
+ *
+ * @var $block \Tagalys\LayeredNavigation\Block\Navigation
+ */
+?>
+<?php //echo 'tag layer';die;
+$params =$this->getRequest()->getParams(); 
+$helper = $this->helper('Tagalys\CatalogSearch\Helper\Data');
+$filters = $helper->getTagalysFilter();
+$res=$helper->getTagalysSearchData();
+$params['q'] = $res['query'];
+?>
+
+<!-- Begin of Tagalys custom filter.phtml code -->
+<?php if(($this->canShowBlock()) || (!empty($filters))): ?>
+  <div id="tagalys-filters" class="block block-layered-nav">
+    
+          <?php if (isset($filters)) : ?>
+	<div class="block-title cat_filter_header">
+           <strong><span>Refine Your Search</span></strong>
+	</div>
+        <?php endif; ?>
+    
+    <div class = "block-content toggle-content">  
+      <!-- <h5>Filters</h5> -->
+      <div id="tagalys-selected-filters" class="currently">
+        <!-- <h6><span class="toggle"></span><span class="title">Selected</span></h6> -->
+        <?php if (isset($params['f'])) : ?>
+         <p class="block-subtitle">Currently Shopping by:</p>
+        <?php endif; ?>
+        <ol>
+		<?php //if(is_array($filters) || is_object($filter)) : ?>  <!--Start condition check for $filters -->
+			<?php foreach ((array)$filters as $key => $filter): ?>
+			  <?php if($filter['type'] == 'checkbox'): ?>
+				<?php foreach ($filter['items'] as $key => $item): ?>
+					<?php if($item['selected']): ?>
+						
+					  <?php
+						$this_params = $this->helper('Tagalys\CatalogSearch\Helper\Data')->getTagalysFilterParams($params, $item, $filter); 
+						$link = $block->getUrl('*/*/*', array('_current'=>true, '_use_rewrite'=>true, '_query'=>$this_params));  
+					  ?>
+					  <li>
+						<a href="<?php echo $link ?>" class="tagalys-filter btn-remove <?php echo $item['selected'] ? 'selected' : '' ?>" title="Remove This Item">Remove This Item</a>
+						  <span class="label"><?php echo $filter['name'] ?>:</span>
+						  <span class="value"><?php echo $item['name'] ?></span>
+					  </li>
+						
+					<?php endif; ?>
+				<?php endforeach; ?>
+			  <?php endif; ?>
+			<?php endforeach; ?>
+		<?php //endif; ?>												<!--end condition check for $filters -->
+        </ol>
+      </div>
+    
+      <!-- <p class="block-subtitle block-subtitle--filter">
+			
+	  </p> -->
+    <dl id="narrow-by-list">
+      <?php foreach ((array)$filters as $key => $filter): ?>
+        <?php if($filter['type'] == 'checkbox'): ?>
+          <div id="filter-<?php echo $filter['prefix']; ?>" class="filter checkboxes collapsible styled-scrollbars collapsed filter_divider" >
+            <dt class="d_arrow">
+              <?php  echo $filter['name'] ?>
+            </dt>
+            <dd><a class="close">
+              <ol>
+                <?php $i = 0; ?>
+                <?php foreach ($filter['items'] as $key => $item): 
+                  $i = $i + 1; ?>    
+                  <?php
+                    $this_params = $this->helper('Tagalys\CatalogSearch\Helper\Data')->getTagalysFilterParams($params, $item, $filter);
+                    $link = $block->getUrl('*/*/*', array('_current'=>true, '_use_rewrite'=>true, '_query'=>$this_params));
+                  ?>
+                   <?php if($i > 5): ?>
+                        <li id='hid' style="display:none">
+                    <?php else: ?>
+                            <li>
+                    <?php endif; ?>
+                    <a href="<?php echo $link ?>" class="tagalys-filter <?php echo $item['selected'] ? 'selected' : '' ?>">
+                    <span class="filter-icon"><i class="icon-ok"></i><i class="icon-cancel"></i></span>
+                    <span class="label"><?php echo $item['name'] ?> </span>
+                    </a>
+                  </li>
+                <?php endforeach; ?>
+              </ol>
+              <?php if(count($filter['items']) > 5): ?>
+<?php endif; ?>
+
+              </a></dd>
+            </dd>
+          </div>
+        <?php endif; ?>
+      <?php endforeach; ?>
+    </dl>
+    </div>
+  </div>
+
+<?php else: ?>
+<!-- end of Tagalys custom filter.phtml code -->
+
+<?php if ($block->canShowBlock()): ?>
+    <div class="block filter">
+        <div class="block-title filter-title">
+            <strong><?php /* @escapeNotVerified */ echo __('Shop By') ?></strong>
+        </div>
+
+        <div class="block-content filter-content">
+            <?php echo $block->getChildHtml('state') ?>
+
+            <?php if ($block->getLayer()->getState()->getFilters()): ?>
+                <div class="block-actions filter-actions">
+                    <a href="<?php /* @escapeNotVerified */ echo $block->getClearUrl() ?>" class="action clear filter-clear"><span><?php /* @escapeNotVerified */ echo __('Clear All') ?></span></a>
+                </div>
+            <?php endif; ?>
+            <?php $wrapOptions = false; ?>
+            <?php foreach ($block->getFilters() as $filter): ?>
+                <?php if (!$wrapOptions): ?>
+                    <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?php /* @escapeNotVerified */ echo __('Shopping Options') ?></strong>
+                    <dl class="filter-options" id="narrow-by-list">
+                <?php $wrapOptions = true; endif; ?>
+                    <?php if ($filter->getItemsCount()): ?>
+                        <dt role="heading" aria-level="3" class="filter-options-title"><?php echo $block->escapeHtml(__($filter->getName())) ?></dt>
+                        <dd class="filter-options-content"><?php /* @escapeNotVerified */ echo $block->getChildBlock('renderer')->render($filter); ?></dd>
+                    <?php endif; ?>
+            <?php endforeach; ?>
+            <?php if ($wrapOptions): ?>
+                </dl>
+            <?php endif; ?>
+        </div>
+	</div>
+<?php endif; ?>
+<?php endif; ?>   <!--Tagalys eol -->

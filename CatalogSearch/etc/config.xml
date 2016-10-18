@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <search>
+            <endpoint>
+                <create_or_update>/api/v1/products/batch</create_or_update>
+                <delete>/api/v1/products/batch</delete>
+                <search>/api/v1/products</search>
+                <search_suggestions>/api/v1/ss</search_suggestions>
+                <merchandising>/api/v1/merchandising_pages/:name-of-merchandising-page/products</merchandising>
+                <similar_products>/api/products/:sku/more_like_this</similar_products>
+            </endpoint>
+        </search>
+    </default>
+</config>
